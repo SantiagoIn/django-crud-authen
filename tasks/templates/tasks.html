@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class="container py-5">
+    <section class="card card-body mx-auto" style="max-width: 400px;">
+        <h1 class="text-center">Task Pending</h1>
+            
+            <ul class="list-group">
+    
+                {% for task in tasks %}
+                    <div class="card card-body">
+                        
+                            <a class="list-group-item" href="{% url 'task_detail' task.id %}">
+                                <header class="d-flex justify-content-between">
+                                    {% if task.important %}
+                                    <h3 class="text-primary">{{task.title}}</h3>
+                                    {% else %}
+                                    <h3 class="text-danger">{{task.title}}</h3>
+                                    {% endif %}
+                                    <p >{{user}}</p>
+                                </header>
+                                
+
+                                {% if task.datecompleted %}
+                                <p>{{task.datecompleted}}</p>
+                                {% else %}
+                                    <p>{{task.description}}</p>
+                                {% endif %}
+                            </a>
+                        
+                    </div>
+                    
+                    
+                {% endfor %}
+            </ul>
+        
+
+    </section>
+    
+</main>
+
+{% endblock %}
+
